@@ -51,12 +51,20 @@ $ npm run test:cov
 ## Project setup (Docker)
 
 1. Clone the repository
-2. Run the following command to build and run the project
+2. Before to run the image with docker compose you need to modify docker-compose.yml file and change the environment variables to your own:
+
+```bash
+  CONTENTFUL_SPACE_ID: 'space_id'
+  CONTENTFUL_ACCESS_TOKEN: 'access_token'
+```
+
+3. Run the following command to build and run the project
 
 ```bash
 $ docker-compose up --build
 ```
-3. Verify the project is running by accessing the following URL:
+
+4. Verify the project is running by accessing the following URL:
 ```bash
 http://localhost:3000
 ```
@@ -69,6 +77,8 @@ If you need to test the OpenAPI documentation and require pass an authorization 
 ```bash
 eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1dWlkIiwiaWF0IjoxNzM3OTY0ODIzfQ.8pjYv01XXKClynyVhhF1zKA0CII0wNf_ALBSv5RerJ8
 ```
+
+
 
 ## Support
 

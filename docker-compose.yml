@@ -29,9 +29,15 @@ services:
       DB_USER: 'root'
       DB_PASSWORD: 'postgres'
       DB_NAME: 'applydigital'
+      DB_LOGGING: 'false'
+      DB_SYNCRONIZE: 'true'
       TYPEORM_TIMEZONE: 'Z'
       JWT_SECRET: 'r185stYfSHrksmID1gXlmwCQ2QRT72QRF3lf6i8zT5p7B/nAb4IY5KeAGXFQBzvZAiBZGLuuCUIguJMvzbCxutUi+SFJnhy8uoq9lSQofiEbVCWzk2JG0D3OQVTqDsXUuT02G+/2HmJbY81r6jYsc5ktu5PUhDFA6k+d78IeKwMIuEDUhFgKDCwnBYnLauRYpKO7kwoRSYbm3bBqiHDoOE96zy9HRF3K9RT2W6qYDLQIeXhVOW0D2nm5gmrrDvGdvVPK1tsstXCB4Fw3MxQPapLaQlPZlUJxxqQc6ejmix3sBas0yPy4ZIjCenMoKaSQ7Hnnn5aJC7qRHBNKcH2e7B=='
       JWT_EXPIRES_IN: '1d'
+      CONTENTFUL_SPACE_ID: 'space_id'
+      CONTENTFUL_ACCESS_TOKEN: 'access_token'
+      CONTENTFUL_ENVIRONMENT: 'master'
+      CONTENTFUL_PRODUCT_CONTENT_TYPE: 'product'
     ports:
       - '3000:3000'
     depends_on:

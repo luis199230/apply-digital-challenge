@@ -11,7 +11,7 @@ export default registerAs('database', (): TypeOrmModuleOptions => {
     password: process.env.DB_PASSWORD || '',
     database: process.env.DB_NAME || '',
     entities: [path.join(__dirname, '..', '**', '*.entity.{ts,js}')],
-    synchronize: true,
-    logging: true,
+    synchronize: process.env.DB_SYNCRONIZE === 'true',
+    logging: process.env.DB_LOGGING === 'true',
   };
 });
