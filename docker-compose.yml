@@ -1,7 +1,7 @@
 services:
   postgresql:
     image: postgres:14
-    container_name: postgres
+    container_name: postgres14
     restart: unless-stopped
     tty: true
     ports:
@@ -9,37 +9,44 @@ services:
     environment:
       POSTGRES_USER: root
       POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: applydigital
     volumes:
-      - postgres_data:/var/lib/postgresql/data
+      - postgres-data:/var/lib/postgresql/data
     networks:
       - app-network
 
   api:
-    restart: always
     build:
       context: .
+    container_name: api
+    restart: always
     environment:
       NODE_ENV: 'production'
       HOST: '0.0.0.0'
       PORT: 3000
-      DB_HOST: ${DB_HOST}
-      DB_PORT: ${DB_PORT}
-      DB_USER: ${DB_USER}
-      DB_PASSWORD: ${DB_PASSWORD}
-      DB_NAME: ${DB_NAME}
-      TYPEORM_TIMEZONE: ${TYPEORM_TIMEZONE}
-      JWT_SECRET: ${JWT_SECRET}
-      JWT_EXPIRES_IN: ${JWT_EXPIRES_IN}
-      
+      DB_HOST: 'postgresql'
+      DB_PORT: 5432
+      DB_USER: 'root'
+      DB_PASSWORD: 'postgres'
+      DB_NAME: 'applydigital'
+      TYPEORM_TIMEZONE: 'Z'
+      JWT_SECRET: 'r185stYfSHrksmID1gXlmwCQ2QRT72QRF3lf6i8zT5p7B/nAb4IY5KeAGXFQBzvZAiBZGLuuCUIguJMvzbCxutUi+SFJnhy8uoq9lSQofiEbVCWzk2JG0D3OQVTqDsXUuT02G+/2HmJbY81r6jYsc5ktu5PUhDFA6k+d78IeKwMIuEDUhFgKDCwnBYnLauRYpKO7kwoRSYbm3bBqiHDoOE96zy9HRF3K9RT2W6qYDLQIeXhVOW0D2nm5gmrrDvGdvVPK1tsstXCB4Fw3MxQPapLaQlPZlUJxxqQc6ejmix3sBas0yPy4ZIjCenMoKaSQ7Hnnn5aJC7qRHBNKcH2e7B=='
+      JWT_EXPIRES_IN: '1d'
     ports:
       - '3000:3000'
+    depends_on:
+      - postgresql
+    networks:
+      - app-network
 
-#Docker Networks
+# Docker Networks
 networks:
   app-network:
     driver: bridge
 
-#Volumes
+# Volumes
 volumes:
+  postgres-data:
+    driver: local
   applydigital-data:
     driver: local
